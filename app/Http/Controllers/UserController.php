@@ -1,16 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function index() {
-        return "Hello, World!";
+        $users = User::all();
+       return view('users.index', [
+        'greeting' => 'Hello, World!',
+        'users' => $users
+       ]);
     }
 
-    public function show($id) {
-       return $id;
+    public function show(User $user) {
+      return view('users.shows', [
+        'user' => $user
+      ]);
     }
 }
